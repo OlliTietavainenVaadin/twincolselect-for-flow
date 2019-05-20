@@ -1,6 +1,6 @@
 # TwinColSelect for Flow
 
-Vaadin 10 Java integration of https://github.com/PolymerElements/paper-slider
+TwinColSelect for Vaadin 10+
 
 ## Development instructions
 

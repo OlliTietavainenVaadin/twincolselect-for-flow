@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.selection.MultiSelect;
 import com.vaadin.flow.data.selection.MultiSelectionEvent;
 import com.vaadin.flow.data.selection.MultiSelectionListener;
@@ -25,13 +26,13 @@ public class TwinColSelect<T> extends Composite<FlexLayout> implements MultiSele
     private ListDataProvider<T> selectedDP;
     private Set<ValueChangeListener<? super AbstractField.ComponentValueChangeEvent<TwinColSelect<T>, Set<T>>>> valueChangeListeners = new HashSet<>();
 
-    private ListBox<T> unselectedListBox;
-    private ListBox<T> selectedListBox;
-    private VerticalLayout buttonsLayout;
-    private Button selectAllButton;
-    private Button selectOneButton;
-    private Button deselectAllButton;
-    private Button deselectOneButton;
+    protected ListBox<T> unselectedListBox;
+    protected ListBox<T> selectedListBox;
+    protected VerticalLayout buttonsLayout;
+    protected Button selectAllButton;
+    protected Button selectOneButton;
+    protected Button deselectAllButton;
+    protected Button deselectOneButton;
 
     protected static final String SELECT_ALL = ">>";
     protected static final String SELECT_ONE = ">";
@@ -62,6 +63,11 @@ public class TwinColSelect<T> extends Composite<FlexLayout> implements MultiSele
         selectOneButton.setEnabled(enabled);
         deselectAllButton.setEnabled(enabled);
         deselectOneButton.setEnabled(enabled);
+    }
+
+    public void setRenderer(ComponentRenderer<? extends Component, T> itemRenderer) {
+        unselectedListBox.setRenderer(itemRenderer);
+        selectedListBox.setRenderer(itemRenderer);
     }
 
     public TwinColSelect(Set<T> items) {
